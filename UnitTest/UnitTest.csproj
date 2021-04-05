@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Monomial\Monomial.csproj" />
+    <ProjectReference Include="..\Monomial\LimMath.csproj" />
   </ItemGroup>
 
 </Project>
