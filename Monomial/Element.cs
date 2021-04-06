@@ -10,55 +10,67 @@ namespace LimMath
     {
 
 
-        private T coefficient;
-        private int monomialPower;     
-        private List<char> variables;
+        private List<T> coefficient = new List<T>();
+        private List<char> variables = new List<char>();
 
         public Element()
         {
-            
+           
         }
 
-    
 
-        public T Coefficient { get => coefficient; set => coefficient = value; }
-        public int MonomialPower { get => monomialPower; set => monomialPower = value; }
+        public Element(string monomial)
+        {
+            string[] elem = monomial.Split('*');
+            List<string> v = new List<string>();
+
+            double coefDouble = 1;
+
+            foreach (var i in elem)
+            {
+                if (Double.TryParse(i, out double m))
+                {
+                    coefDouble *= m;
+                }
+                else
+                {
+                    v.Add(i);
+                }
+            }
+
+        }
+
+       
         public List<char> Variables { get => variables; set => variables = value; }
+        public List<T> Coefficient { get => coefficient; set => coefficient = value; }
 
+        public static Element<T> operator +(Element<T> e1, Element<T> e2)
+        {
 
+            return Add(e1, e2);
 
-        /*   public ElemMulti(string monomial)
-           {
-               string[] elem = monomial.Split('*');
-               List<string> variables = new List<string>();
+        }
 
-           double coefDouble = 1;
+        private static Element<T> Add(Element<T> e1, Element<T> e2)
+        {
 
-               foreach (var i in elem)
-               {
-                   if (Double.TryParse(i, out double m))
-                   {
-                       coefDouble *= m;
-                   }
-                   else 
-                   {
-                      //Variables.Add(i);
-                   }
-               }
+            List<T> result = e1.Coefficient;
+            if (e1.Variables.Equals(e2.Variables))
+            {
+                foreach (var i in e2.Coefficient)
+                {
 
-               coefficient = (T)Convert.ChangeType(coefDouble, typeof(T));
-               foreach (var i in variables)
-               {
+                    result.Add(i);
+                }
 
-                  int pozition = i.IndexOf("^") + 1;
-               }
-
-
-
-
-           }*/
-
-
-
+                return new Element<T> { Coefficient = result, Variables = e1.Variables };
+            }
+            else 
+            {
+                // сумма элементов 
+                throw new NotImplementedException();
+            }
+           
+        }
     }
 }

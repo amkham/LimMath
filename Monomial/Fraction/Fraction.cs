@@ -7,56 +7,92 @@ namespace LimMath
    public class Fraction<N,D> 
     {
         
-        private List<N> numerator;
-        private List<D> denominator;
+        private List<N> numerator = new List<N>();
+        private List<D> denominator = new List<D>();
 
-     
+        bool numPositive;
+        bool denPositive;
+
+
+        public Fraction(string s)
+        {
+
+            string[] mass = s.Split("/");
+
+          
+                numerator.Add((N)Convert.ChangeType(new Element<double>(mass[0]), typeof(N)));
+            
+            
+           // numerator.Add((N)Convert.ChangeType(mass[0], typeof(N)));
+            denominator.Add((D)Convert.ChangeType(mass[1], typeof(D)));
+        }
 
         public Fraction(List<N> numerator, List<D> denominator)
         {
-            this.Numerator = numerator;
-            this.Denominator = denominator;
+            Numerator = numerator;
+            Denominator = denominator;
+           
+
             
         }
+
+
+       
 
         public Fraction()
         {
            
         }
 
+        ////////////////////////////////// ПЕРЕГРУЗКА ОПЕРАТОРОВ /////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /// <summary>
+        /// Сумма дробей
+        /// </summary>
+        /// <param name="f1">Дробь 1</param>
+        /// <param name="f2">Дробь 2</param>
+        /// <param name="">Дробь 2</param>
+        /// <returns>Обьект типа Fraction</returns>
         public static Fraction<N, D> operator +(Fraction<N, D> f1, Fraction<N, D> f2)
 
         {
+            if ((typeof(N) == typeof(double)) && (typeof(D) == typeof(double)))
+            {
 
-            return Sum(f1, f2);
-        }
-
-    
-
-
-
-
-
-        private static Fraction<N,D> Sum(Fraction<N, D> f1, Fraction<N, D> f2)
-        {
-
-         
+                return Sum(f1, f2);
+            }
+            else 
+            {
+                return Add(f1, f2);
+            }
           
-                List<N> newNum = f1.Numerator;
+            
+        }
 
-                foreach (var i in f2.Numerator)
-                {
+        private static Fraction<N, D> Add(Fraction<N, D> f1, Fraction<N, D> f2)
+        {
 
-                    newNum.Add(i);
-                }
 
-                return new Fraction<N, D> { Numerator = newNum, Denominator = f1.Denominator };
+
+            List<N> newNum = f1.Numerator;
+
+            foreach (var i in f2.Numerator)
+            {
+
+                newNum.Add(i);
+            }
+
+            return new Fraction<N, D> { Numerator = newNum, Denominator = f1.Denominator };
 
         }
 
-        private static Fraction<N, D> Sum(Fraction<int, int> f1, Fraction<int, int> f2)
+        private static Fraction<N, D> Sum(Fraction<N, D> f1, Fraction<N, D> f2)
         {
-            int sum = 0;
+
+            dynamic sum = 0;
+            dynamic denom1 = f1.Denominator;
+            dynamic denom2 = f2.Denominator;
 
             foreach (var i in f1.Numerator)
             {
@@ -70,18 +106,59 @@ namespace LimMath
 
             Fraction<N, D> result = new Fraction<N, D>();
             result.Numerator.Add((N)Convert.ChangeType(sum, typeof(N)));
-            result.Denominator.Add((D)Convert.ChangeType(f1.Denominator, typeof(D)));
+            result.Denominator = f1.Denominator;
 
             return result;
 
         }
 
 
-        private static int Simplify(Fraction<N, D> f)
+
+
+        /// <summary>
+        /// Вычитание дробей
+        /// </summary>
+        /// <param name="f1"></param>
+        /// <param name="f2"></param>
+        /// <returns></returns>
+        public static Fraction<N, D> operator -(Fraction<N, D> f1, Fraction<N, D> f2)
+
         {
+            if ((typeof(N) == typeof(double)) && (typeof(D) == typeof(double)))
+            {
+
+                return Dif(f1, f2);
+            }
+            else
+            {
+                return Add(f1, f2);
+            }
 
 
-            return 0;
+        }
+
+     
+
+        private static Fraction<N, D> Dif(Fraction<N, D> f1, Fraction<N, D> f2)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        ////////////////////////////////// ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ /////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+       
+
+
+
+
+
+        private static Fraction<N,D> Simplify(Fraction<N, D> f)
+        {
+            
+
+            return null;
            
 
         }
@@ -94,13 +171,13 @@ namespace LimMath
 
             foreach (var i in Numerator)
             {
-                s = s + i.ToString() + ",";
+                s = s + i.ToString() + " ";
             }
 
             s = s + " / ";
             foreach (var i in Denominator)
             {
-                s = s + i.ToString() + ",";
+                s = s + i.ToString() + " ";
             }
 
             s = s + "}";
@@ -108,10 +185,11 @@ namespace LimMath
 
         }
 
-
+       
 
         public List<N> Numerator { get => numerator; set => numerator = value; }
         public List<D> Denominator { get => denominator; set => denominator = value; }
-
+        public bool NumPositive { get => numPositive; set => numPositive = value; }
+        public bool DenPositive { get => denPositive; set => denPositive = value; }
     }
 }
