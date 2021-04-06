@@ -9,6 +9,7 @@ namespace UnitTest
     public class UnitTest1
     {
         Fraction<int, int> f1 = new Fraction<int, int> { Numerator = new List<int> { 1}, Denominator = new List<int> { 3} };
+       
         Fraction<int, int> f2 = new Fraction<int, int> { Numerator = new List<int> { 2 }, Denominator = new List<int> { 3 } };
 
 
@@ -18,9 +19,11 @@ namespace UnitTest
         public void coeffTest()
         {
 
-            Fraction<int, int> f3 = f1 + f2;
-            Console.WriteLine(f3.toString() + "#");
-        
+            Fraction<int, int> f3 = new Fraction<int, int>();
+
+            f3 = f1 + f2;
+
+            Console.WriteLine(f3.toString());
 
         }
     }

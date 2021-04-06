@@ -4,8 +4,9 @@ using System.Text;
 
 namespace LimMath
 {
-   public class Fraction<N,D>
+   public class Fraction<N,D> 
     {
+        
         private List<N> numerator;
         private List<D> denominator;
 
@@ -30,13 +31,16 @@ namespace LimMath
             return Sum(f1, f2);
         }
 
+    
 
-       
+
+
 
 
         private static Fraction<N,D> Sum(Fraction<N, D> f1, Fraction<N, D> f2)
         {
 
+         
           
                 List<N> newNum = f1.Numerator;
 
@@ -50,23 +54,56 @@ namespace LimMath
 
         }
 
+        private static Fraction<N, D> Sum(Fraction<int, int> f1, Fraction<int, int> f2)
+        {
+            int sum = 0;
+
+            foreach (var i in f1.Numerator)
+            {
+                sum = sum + i;
+            }
+
+            foreach (var i in f2.Numerator)
+            {
+                sum = sum + i;
+            }
+
+            Fraction<N, D> result = new Fraction<N, D>();
+            result.Numerator.Add((N)Convert.ChangeType(sum, typeof(N)));
+            result.Denominator.Add((D)Convert.ChangeType(f1.Denominator, typeof(D)));
+
+            return result;
+
+        }
+
+
+        private static int Simplify(Fraction<N, D> f)
+        {
+
+
+            return 0;
+           
+
+        }
+
 
         public string toString()
         {
 
-            string s = "";
+            string s = "{";
 
             foreach (var i in Numerator)
             {
-                s = s + i.ToString();
+                s = s + i.ToString() + ",";
             }
 
             s = s + " / ";
             foreach (var i in Denominator)
             {
-                s = s + i.ToString();
+                s = s + i.ToString() + ",";
             }
 
+            s = s + "}";
             return s;
 
         }
