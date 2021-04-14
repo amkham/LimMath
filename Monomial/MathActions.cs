@@ -17,7 +17,9 @@ namespace LimMath
             return x > y ? x : y;
         }
 
-        static public int GCF(int a, int b)
+ 
+
+        static public double GCF(double a, double b)
         {
             while (b != 0)
             {
@@ -28,10 +30,12 @@ namespace LimMath
             return a;
         }
 
-        static public int LCM(int a, int b)
+     
+
+        static public double LCM(double a, double b)
         {
-            
-            return a*b/GCF(a,b);
+
+            return a * b / GCF(a, b);
         }
     }
 }

@@ -104,6 +104,7 @@ namespace LimMath
                 sum = sum + i;
             }
 
+
             Fraction<N, D> result = new Fraction<N, D>();
             result.Numerator.Add((N)Convert.ChangeType(sum, typeof(N)));
             result.Denominator = f1.Denominator;
