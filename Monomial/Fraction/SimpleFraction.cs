@@ -85,7 +85,7 @@ namespace LimMath.Fraction
             int div = MathActions.GCF(Numer, Denom);
             if (div != 1)
             {
-
+               
                 Numer /= div;
                 Denom /= div;
             }
@@ -97,6 +97,10 @@ namespace LimMath.Fraction
 
 
         public override string ToString() => Numer == Denom ? "" + Numer  : Numer + "/" + Denom;
+
+
+        public double ToDecimal() => Numer / Denom;
+
      
 
     
