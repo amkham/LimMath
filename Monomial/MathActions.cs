@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LimMath
 {
-    class MathActions
+    static public class MathActions
     {
 
         static public int Min(int x, int y)
@@ -19,7 +19,7 @@ namespace LimMath
 
  
 
-        static public double GCF(double a, double b)
+        static public int GCF(int a, int b)
         {
             while (b != 0)
             {
@@ -32,10 +32,10 @@ namespace LimMath
 
      
 
-        static public double LCM(double a, double b)
+        static public int LCM(int a, int b)
         {
 
-            return a * b / GCF(a, b);
+            return  a * b / GCF(a, b);
         }
     }
 }
