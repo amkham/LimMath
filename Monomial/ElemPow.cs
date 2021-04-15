@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Monomial
+﻿namespace Monomial
 {
     // B - основание
     // P - степень
@@ -12,6 +8,6 @@ namespace Monomial
         private Base basis;
         private Pow power;
 
-    
+
     }
-    }
+}

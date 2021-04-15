@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LimMath
+﻿namespace LimMath
 {
     static public class MathActions
     {
@@ -17,7 +13,7 @@ namespace LimMath
             return x > y ? x : y;
         }
 
- 
+
 
         static public int GCF(int a, int b)
         {
@@ -30,12 +26,12 @@ namespace LimMath
             return a;
         }
 
-     
+
 
         static public int LCM(int a, int b)
         {
 
-            return  a * b / GCF(a, b);
+            return a * b / GCF(a, b);
         }
     }
 }

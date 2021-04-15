@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace LimMath
+namespace LimMath.Fraction
 {
-   public class Fraction<N,D> 
+    public class Fraction<N, D>
     {
-        
+
         private List<N> numerator = new List<N>();
         private List<D> denominator = new List<D>();
 
@@ -14,34 +13,13 @@ namespace LimMath
         bool denPositive;
 
 
-        public Fraction(string s)
-        {
-
-            string[] mass = s.Split("/");
-
-          
-                numerator.Add((N)Convert.ChangeType(new Element<double>(mass[0]), typeof(N)));
-            
-            
-           // numerator.Add((N)Convert.ChangeType(mass[0], typeof(N)));
-            denominator.Add((D)Convert.ChangeType(mass[1], typeof(D)));
-        }
-
-        public Fraction(List<N> numerator, List<D> denominator)
-        {
-            Numerator = numerator;
-            Denominator = denominator;
-           
-
-            
-        }
 
 
-       
+
 
         public Fraction()
         {
-           
+
         }
 
         ////////////////////////////////// ПЕРЕГРУЗКА ОПЕРАТОРОВ /////////////////////////////////////////////////////
@@ -62,12 +40,12 @@ namespace LimMath
 
                 return Sum(f1, f2);
             }
-            else 
+            else
             {
                 return Add(f1, f2);
             }
-          
-            
+
+
         }
 
         private static Fraction<N, D> Add(Fraction<N, D> f1, Fraction<N, D> f2)
@@ -138,7 +116,7 @@ namespace LimMath
 
         }
 
-     
+
 
         private static Fraction<N, D> Dif(Fraction<N, D> f1, Fraction<N, D> f2)
         {
@@ -149,18 +127,18 @@ namespace LimMath
         ////////////////////////////////// ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ /////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-       
 
 
 
 
 
-        private static Fraction<N,D> Simplify(Fraction<N, D> f)
+
+        private static Fraction<N, D> Simplify(Fraction<N, D> f)
         {
-            
+
 
             return null;
-           
+
 
         }
 
@@ -186,7 +164,7 @@ namespace LimMath
 
         }
 
-       
+
 
         public List<N> Numerator { get => numerator; set => numerator = value; }
         public List<D> Denominator { get => denominator; set => denominator = value; }
