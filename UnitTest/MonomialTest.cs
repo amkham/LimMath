@@ -8,7 +8,7 @@ namespace UnitTest
     class MonomialTest
     {
 
-        Monomial m = new Monomial(5, {'a','b'});
+      
         
 
         [TestMethod]
