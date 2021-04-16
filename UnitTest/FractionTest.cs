@@ -1,10 +1,10 @@
-using LimMath.Fraction;
+using LimMath;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTest
 {
     [TestClass]
-    class FractionTest
+    public class FractionTest
     {
         SimpleFraction sf = new SimpleFraction(2,3);
         SimpleFraction sf2 = new SimpleFraction(7,4);

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LimMath.Fraction
-{
+namespace LimMath
+{ 
     public class Fraction<N, D>
     {
 

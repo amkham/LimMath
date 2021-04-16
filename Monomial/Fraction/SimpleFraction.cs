@@ -1,12 +1,11 @@
 ﻿using System;
-using LimMath.Monomial;
 
-namespace LimMath.Fraction
+namespace LimMath
 {
     public struct SimpleFraction
     {
 
-       
+
 
         public int Numer { get; set; }
         public int Denom { get; set; }
@@ -110,7 +109,9 @@ namespace LimMath.Fraction
 
 
 
-
+        /// <summary>
+        /// Сократить дробь 
+        /// </summary>
         public void Cut()
         {
             int div = MathActions.GCF(Numer, Denom);
@@ -122,16 +123,51 @@ namespace LimMath.Fraction
             }
 
         }
+        public void Cut(int n)
+        {
+            int div = MathActions.GCF(Numer, Denom);
+            if ((Numer%n==0)&&(Denom%n == 0))
+            {
 
+                Numer /= n;
+                Denom /= n;
+            }
 
+        }
+
+        /// <summary>
+        /// Получить обратную дробь
+        /// </summary>
+        /// <returns></returns>
         public SimpleFraction Reverse() => new SimpleFraction(Denom, Numer);
 
+        /// <summary>
+        /// Возвращает true если дробь правильная
+        /// </summary>
+        /// <returns></returns>
         public bool Proper() => Numer < Denom;
 
+        public override string ToString()
+        {
+            if (Numer == Denom)
+            {
+                return "" + Numer;
+            }
+            else
+            {
+                if (Denom == 1)
+                {
+                    return "" + Numer;
+                }
+                else return  Numer + "/" + Denom;
+            }
+           
+        }
 
-        public override string ToString() => Numer == Denom ? "" + Numer : Numer + "/" + Denom;
-
-
+        /// <summary>
+        /// Возвращает десятичную запись дроби
+        /// </summary>
+        /// <returns></returns>
         public double ToDecimal() => Numer / Denom;
 
         public override bool Equals(object obj)
