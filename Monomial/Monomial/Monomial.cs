@@ -4,25 +4,31 @@ using System.Collections.Generic;
 
 namespace LimMath
 {
-    public struct Monomial
+    public class Monomial
     {
-
-
-        private SimpleFraction coef;
         public List<char> Variables { get; set; }
-        public SimpleFraction Coef { get => coef; set => coef = value; }
+        public SimpleFraction Coef { get; set; }
 
         public Monomial(SimpleFraction coef, List<char> variables)
         {
-            this.coef = coef;
+            Coef = coef;
             Variables = variables;
             Variables.Sort();
         }
         public Monomial(int coef, List<char> variables)
         {
-            this.coef = new SimpleFraction(coef, 1);
+            Coef = new SimpleFraction(coef, 1);
             Variables = variables;
             Variables.Sort();
+        }
+        public Monomial(int coef)
+        {
+            Coef = new SimpleFraction(coef, 1);
+            Variables = new List<char>();
+          
+        }
+        Monomial()
+        { 
         }
 
 
@@ -148,14 +154,14 @@ namespace LimMath
         public override bool Equals(object obj)
         {
             return obj is Monomial monomial &&
-                   EqualityComparer<SimpleFraction>.Default.Equals(coef, monomial.coef) &&
+                   EqualityComparer<SimpleFraction>.Default.Equals(Coef, monomial.Coef) &&
                    EqualityComparer<SimpleFraction>.Default.Equals(Coef, monomial.Coef) &&
                    EqualityComparer<List<char>>.Default.Equals(Variables, monomial.Variables);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(coef, Coef, Variables);
+            return HashCode.Combine(Coef, Coef, Variables);
         }
     }
     }

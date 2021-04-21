@@ -2,7 +2,7 @@
 
 namespace LimMath
 {
-    public struct SimpleFraction
+    public class SimpleFraction
     {
 
 
