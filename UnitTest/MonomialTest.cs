@@ -23,17 +23,13 @@ namespace UnitTest
         {
          
 
-           //Assert.AreEqual(true, LimMath.Monomial.Similar(m1.Variables, m2.Variables));
-          // Assert.AreEqual(false, LimMath.Monomial.Similar(m1.Variables, m3.Variables));
-          // Assert.AreEqual(new SimpleFraction(4,1), (m1 + m2).Coef);
+           Assert.AreEqual(true, LimMath.Monomial.Similar(m1, m2));
+          Assert.AreEqual(false, LimMath.Monomial.Similar(m1, m3));
+          Assert.AreEqual(new SimpleFraction(4,1), (m1 + m2).Coef);
 
            Assert.AreEqual(false, m1.Equals(m2));
 
-            Assert.AreEqual(m5.ToString(),  (m1 * m2).ToString());
-
-            Console.WriteLine(m1.Variables.Count);
-            Console.WriteLine(m2.Variables.Count);
-
+            
 
             Assert.AreEqual(true, m1 == m2);
             Assert.AreEqual(false, m1 == m3);
@@ -41,8 +37,15 @@ namespace UnitTest
             Assert.AreEqual(false, m1 != m2);
             Assert.AreEqual(true, m1 != m4);
             Assert.AreEqual(true, m1 != m3);
+            Assert.AreEqual(true, m1 != m5);
 
+            Assert.AreEqual(true, m1 < m4);
+            Assert.AreEqual(false, m1 > m4);
+            Assert.AreEqual(false, m4 < m1);
+            Assert.AreEqual(true, m4 > m1);
+            Assert.AreEqual(true, m1 < m4);
 
+            Assert.AreEqual(m5.ToString(), (m1 * m2).ToString());
 
 
         }
