@@ -18,6 +18,11 @@ namespace LimMath
             Pol = new List<Monomial>();
         }
 
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////      АРИФМИТИЧЕСКИЕ И ЛОГИЧЕСКИЕ ДЕЙСТВИЯ     //////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+
         public static Polynomial operator +(Polynomial p) => p;
         public static Polynomial operator +(Polynomial p1, Polynomial p2) => Sum(p1,p2);
         public static Polynomial operator +(Polynomial p, int n) => Sum(p,n);
@@ -28,10 +33,14 @@ namespace LimMath
         public static Polynomial operator -(Polynomial p1, int n) => p1 + (-n);
         public static Polynomial operator -(int n, Polynomial p) => n + (-p);
 
+        public static Polynomial operator *(Polynomial p1, Polynomial p2) => Multy(p1, p2);
+        public static Polynomial operator *(Polynomial p, int n) => Multy(p, n);
+        public static Polynomial operator *(int n, Polynomial p) => p * n;
+
 
         private static Polynomial Sum(Polynomial p1, Polynomial p2)
         {
-            List<Monomial> result = new List<Monomial>();
+            List<Monomial> result = new();
 
             foreach (var i in p1.Pol) 
             {
@@ -56,16 +65,38 @@ namespace LimMath
             return new Polynomial(result);
         }
 
-        private static Polynomial Sum<N>(Polynomial p1, N n)
+        private static Polynomial Multy(Polynomial p1, Polynomial p2)
         {
-            List<Monomial> result = p1.Pol;
-            result.Add(new Monomial(n));
-            return new Polynomial(result);
+            Polynomial result = new();
+
+            foreach (var i in p1.Pol)
+            {
+                foreach (var j in p2.Pol)
+                {
+                    result.Pol.Add(i * j);
+                }
+            }
+
+            return result;
+
+        }
+        private static Polynomial Multy(Polynomial p, int n)
+        {
+            Polynomial result = new();
+
+            foreach (var i in p.Pol)
+            {
+                result.Pol.Add(i * n);
+                
+            }
+
+            return result;
+
         }
 
         private static Polynomial Opposite(Polynomial p)
         {
-            Polynomial result = new Polynomial();
+            Polynomial result = new();
             foreach (var i in p.Pol)
             {
                 result.Pol.Add(-i);
@@ -73,7 +104,6 @@ namespace LimMath
 
             return result;
         }
-
 
 
     }

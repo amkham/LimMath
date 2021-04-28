@@ -8,9 +8,8 @@ namespace LimMath
     {
 
 
-        List<Object> obj = new List<object>();
-        SimpleFraction sf = new SimpleFraction();
-        Monomial mn = new Monomial();
+        L
+       
 
 
         ///////////////////////////////////////////////////////////////////////////////////////////////
