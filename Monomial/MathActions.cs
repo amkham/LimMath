@@ -1,4 +1,6 @@
-﻿namespace LimMath
+﻿using System.Collections.Generic;
+
+namespace LimMath
 {
     static public class MathActions
     {
@@ -33,5 +35,8 @@
 
             return a * b / GCF(a, b);
         }
+
+
+      
     }
 }

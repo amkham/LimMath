@@ -16,6 +16,13 @@ namespace LimMath
             Variables = variables;
             Variables.Sort();
         }
+
+        public Monomial(SimpleFraction coef)
+        {
+            Coef = coef;
+            Variables = new List<char>();
+            
+        }
         public Monomial(int coef, List<char> variables)
         {
             Coef = new SimpleFraction(coef, 1);
@@ -45,7 +52,7 @@ namespace LimMath
         /// <returns></returns>
         /// 
         public static Monomial operator +(Monomial m) => m;
-        public static Monomial operator +(Monomial m1, Monomial m2) => Monomial.Similar(m1, m2)
+        public static Monomial operator +(Monomial m1, Monomial m2) => Similar(m1, m2)
             ? new Monomial(m1.Coef + m2.Coef, m1.Variables)
             : throw new ArgumentException("Одночлены не подобны. Сложение не возможно");
 
@@ -56,14 +63,17 @@ namespace LimMath
         /// <param name="m2"></param>
         /// <returns></returns>
         /// 
-        public static Monomial operator -(Monomial m) => new Monomial(-m.Coef, m.Variables);
+        public static Monomial operator -(Monomial m) => new (-m.Coef, m.Variables);
         public static Monomial operator -(Monomial m1, Monomial m2) => m1 + (-m2);
 
 
-        public static Monomial operator *(Monomial m1, Monomial m2) => new Monomial(m1.Coef * m2.Coef, Add(m1.Variables, m2.Variables));
-        public static Monomial operator *(int n, Monomial m) => new Monomial(n, new List<char> { }) * m;
-        public static Monomial operator *(Monomial m, int n) => new Monomial(n, new List<char> { }) * m;
+        public static Monomial operator *(Monomial m1, Monomial m2) => new (m1.Coef * m2.Coef, Add(m1.Variables, m2.Variables));
+        public static Monomial operator *(Monomial m, SimpleFraction sf) => new (m.Coef * sf, m.Variables);
+        public static Monomial operator *(SimpleFraction sf, Monomial m) => m * sf;
+        public static Monomial operator *(Monomial m, int n) => m * new SimpleFraction(n);
+        public static Monomial operator *(int n, Monomial m) => m * n;
 
+        public static Monomial operator /(Monomial m1, Monomial m2) => new(m1.Coef/m2.Coef, m1.)
 
         public static bool operator ==(Monomial m1, Monomial m2) => Similar(m1, m2) && m1.Coef == m2.Coef;
         public static bool operator !=(Monomial m1, Monomial m2) => !Similar(m1, m2) || m1.Coef != m2.Coef;
@@ -136,7 +146,11 @@ namespace LimMath
         }
 
 
+        private static Monomial Div(Monomial m1, Monomial l2)
+        {
 
+
+        }
 
 
         ///////////////////////////////////////////////////////////////////////////////////////////////
