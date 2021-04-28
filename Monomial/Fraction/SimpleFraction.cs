@@ -38,6 +38,9 @@ namespace LimMath
             Denom = d;
         }
 
+        public SimpleFraction()
+        { }
+
 
 
 

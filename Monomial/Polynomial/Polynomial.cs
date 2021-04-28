@@ -7,6 +7,8 @@ namespace LimMath
 {
     public class Polynomial
     {
+        public List<Monomial> Pol { get; set; }
+
         public Polynomial(List<Monomial> pol)
         {
             Pol = pol;
@@ -17,11 +19,17 @@ namespace LimMath
         }
 
         public static Polynomial operator +(Polynomial p) => p;
-        public static Polynomial operator +(Polynomial p1, Polynomial p2) => new Polynomial(Sum(p1,p2));
-        public static Polynomial operator +(Polynomial p, int n) => new Polynomial(Sum(p,n));
+        public static Polynomial operator +(Polynomial p1, Polynomial p2) => Sum(p1,p2);
+        public static Polynomial operator +(Polynomial p, int n) => Sum(p,n);
         public static Polynomial operator +(int n, Polynomial p) => p+n;
 
-        private static List<Monomial> Sum(Polynomial p1, Polynomial p2)
+        public static Polynomial operator -(Polynomial p) => Opposite(p);
+        public static Polynomial operator -(Polynomial p1, Polynomial p2) => p1 + (-p2);
+        public static Polynomial operator -(Polynomial p1, int n) => p1 + (-n);
+        public static Polynomial operator -(int n, Polynomial p) => n + (-p);
+
+
+        private static Polynomial Sum(Polynomial p1, Polynomial p2)
         {
             List<Monomial> result = new List<Monomial>();
 
@@ -38,16 +46,35 @@ namespace LimMath
                   
                 }
             }
-            return result;
+            return new Polynomial(result);
         
         }
-        private static List<Monomial> Sum(Polynomial p1, int n)
+        private static Polynomial Sum(Polynomial p1, int n)
         {
-            List<Monomial> monomials = p1.Pol;
-            monomials.Add(new Monomial(n));
-            return monomials;
+            List<Monomial> result = p1.Pol;
+            result.Add(new Monomial(n));
+            return new Polynomial(result);
         }
 
-        public List<Monomial> Pol { get; set; }
+        private static Polynomial Sum<N>(Polynomial p1, N n)
+        {
+            List<Monomial> result = p1.Pol;
+            result.Add(new Monomial(n));
+            return new Polynomial(result);
+        }
+
+        private static Polynomial Opposite(Polynomial p)
+        {
+            Polynomial result = new Polynomial();
+            foreach (var i in p.Pol)
+            {
+                result.Pol.Add(-i);
+            }
+
+            return result;
+        }
+
+
+
     }
 }
