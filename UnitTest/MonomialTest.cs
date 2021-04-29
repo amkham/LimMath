@@ -35,7 +35,6 @@ namespace UnitTest
 
 
             Assert.AreEqual(true, m1 == m2);
-            Console.WriteLine(m1.ToString() + " " + m2.ToString());
             Assert.AreEqual(false, m1 == m3);
             Assert.AreEqual(false, m1 == m4);
             Assert.AreEqual(false, m1 != m2);

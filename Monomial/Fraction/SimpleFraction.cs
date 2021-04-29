@@ -152,6 +152,7 @@ namespace LimMath
 
         }
 
+
         /// <summary>
         /// Получить обратную дробь
         /// </summary>
@@ -200,11 +201,8 @@ namespace LimMath
             if (obj is SimpleFraction fraction)
             {
 
-                fraction.Cut();
-                Cut();
-
-                return Numer == fraction.Numer &&
-                       Denom == fraction.Denom;
+                return Numer * fraction.Denom == Denom * fraction.Numer;
+                
             }
             else return false;
 
