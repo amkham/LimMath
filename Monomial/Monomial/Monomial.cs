@@ -6,15 +6,14 @@ namespace LimMath
 {
     public class Monomial
     {
-        public List<char> Variables { get; set; }
-
         public SimpleFraction Coef { get; set; }
+        public List<char> Variables { get; set; }
 
         public Monomial(SimpleFraction coef, List<char> variables)
         {
             Coef = coef;
             Variables = variables;
-            Variables.Sort();
+           
         }
 
         public Monomial(SimpleFraction coef)
@@ -27,7 +26,7 @@ namespace LimMath
         {
             Coef = new SimpleFraction(coef, 1);
             Variables = variables;
-            Variables.Sort();
+           
         }
         public Monomial(int coef)
         {
@@ -63,19 +62,40 @@ namespace LimMath
         /// <param name="m2"></param>
         /// <returns></returns>
         /// 
-        public static Monomial operator -(Monomial m) => new (-m.Coef, m.Variables);
-        public static Monomial operator -(Monomial m1, Monomial m2) => m1 + (-m2);
+        public static Monomial operator -(Monomial m) => new Monomial (-m.Coef, m.Variables);
+        public static Monomial operator -(Monomial m1, Monomial m2)
+        {
+            if (m1 is null)
+            {
+                throw new ArgumentNullException(nameof(m1));
+            }
 
-
-        public static Monomial operator *(Monomial m1, Monomial m2) => new (m1.Coef * m2.Coef, Add(m1.Variables, m2.Variables));
-        public static Monomial operator *(Monomial m, SimpleFraction sf) => new (m.Coef * sf, m.Variables);
+            return m1 + (-m2);
+        }
+        /// <summary>
+        /// Умножение
+        /// </summary>
+        /// <param name="m1"></param>
+        /// <param name="m2"></param>
+        /// <returns></returns>
+        public static Monomial operator *(Monomial m1, Monomial m2) => new Monomial(m1.Coef * m2.Coef, Add(m1.Variables, m2.Variables));
+        public static Monomial operator *(Monomial m, SimpleFraction sf) => new Monomial(m.Coef * sf, m.Variables);
         public static Monomial operator *(SimpleFraction sf, Monomial m) => m * sf;
         public static Monomial operator *(Monomial m, int n) => m * new SimpleFraction(n);
         public static Monomial operator *(int n, Monomial m) => m * n;
 
-        public static Monomial operator /(Monomial m1, Monomial m2) => new(m1.Coef/m2.Coef, m1.)
+        //  public static Monomial operator /(Monomial m1, Monomial m2) => new Monomial(m1.Coef / m2.Coef, m1);
 
-        public static bool operator ==(Monomial m1, Monomial m2) => Similar(m1, m2) && m1.Coef == m2.Coef;
+        public static bool operator ==(Monomial m1, Monomial m2)
+        {
+            if (m1 is null)
+            {
+                throw new ArgumentNullException(nameof(m1));
+            }
+
+            return Similar(m1, m2) && m1.Coef == m2.Coef;
+        }
+
         public static bool operator !=(Monomial m1, Monomial m2) => !Similar(m1, m2) || m1.Coef != m2.Coef;
 
         public static bool operator >(Monomial m1, Monomial m2) => Similar(m1, m2) ? m1.Coef > m2.Coef
@@ -96,9 +116,9 @@ namespace LimMath
         /// <param name="m1"></param>
         /// <param name="m2"></param>
         /// <returns></returns>
-        public static bool Similar(Monomial m1, Monomial m2)
+        public static bool Similar(in Monomial m1, in Monomial m2)
         {
-              
+        
 
                 int result = 0;
 
@@ -136,19 +156,20 @@ namespace LimMath
         /// <param name="l1"></param>
         /// <param name="l2"></param>
         /// <returns></returns>
-        private static List<char> Add(List<char> l1, List<char> l2)
+        private static List<char> Add(in List<char> l1, in List<char> l2)
         {
-            List<char> nList = l1;
            
-            nList.AddRange(l2);
-            return nList;
+            l1.AddRange(l2);
+            return l1;
 
         }
 
 
-        private static Monomial Div(Monomial m1, Monomial l2)
+        private static List<char> Div(List<char> l1, List<char> l2)
         {
+            List<char> result = new List<char>();
 
+            return result;
 
         }
 

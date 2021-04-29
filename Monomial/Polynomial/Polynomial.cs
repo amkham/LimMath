@@ -38,7 +38,7 @@ namespace LimMath
 
         private static Polynomial Sum(Polynomial p1, Polynomial p2)
         {
-            List<Monomial> result = new();
+            List<Monomial> result = new List<Monomial>();
 
             foreach (var i in p1.Pol) 
             {
@@ -65,7 +65,7 @@ namespace LimMath
 
         private static Polynomial Multy(Polynomial p1, Polynomial p2)
         {
-            Polynomial result = new();
+            Polynomial result = new Polynomial();
 
             foreach (var i in p1.Pol)
             {
@@ -80,7 +80,7 @@ namespace LimMath
         }
         private static Polynomial Multy(Polynomial p, int n)
         {
-            Polynomial result = new();
+            Polynomial result = new Polynomial();
 
             foreach (var i in p.Pol)
             {
@@ -94,7 +94,7 @@ namespace LimMath
 
         private static Polynomial Opposite(Polynomial p)
         {
-            Polynomial result = new();
+            Polynomial result = new Polynomial();
             foreach (var i in p.Pol)
             {
                 result.Pol.Add(-i);
