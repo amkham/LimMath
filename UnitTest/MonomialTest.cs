@@ -15,7 +15,14 @@ namespace UnitTest
         List<char> variables3 = new List<char> { 'b', 'c', 'a', 'd' };
 
 
+        [TestMethod]
+        public void EqualsTest()
+        {
+            LimMath.Monomial m1 = new LimMath.Monomial(2, new List<char> { 'z', 'x', 'y' });
+            LimMath.Monomial m2 = new LimMath.Monomial(2, new List<char> { 'y', 'z', 'x' });
+            Assert.AreEqual(true, m1.Equals(m2));
 
+        }
 
 
         [TestMethod]
@@ -30,7 +37,7 @@ namespace UnitTest
             Assert.AreEqual(true, LimMath.Monomial.Similar(m1, m2));
             Assert.AreEqual(false, LimMath.Monomial.Similar(m1, m3));
 
-            Assert.AreEqual(false, m1.Equals(m2));
+            Assert.AreEqual(true, m1.Equals(m2));
 
 
 

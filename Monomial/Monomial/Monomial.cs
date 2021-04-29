@@ -190,9 +190,9 @@ namespace LimMath
         public override bool Equals(object obj)
         {
             return obj is Monomial monomial &&
-                   EqualityComparer<SimpleFraction>.Default.Equals(Coef, monomial.Coef) &&
-                   EqualityComparer<SimpleFraction>.Default.Equals(Coef, monomial.Coef) &&
-                   EqualityComparer<List<char>>.Default.Equals(Variables, monomial.Variables);
+                Similar(this, monomial) &&
+                Coef == monomial.Coef; 
+                   
         }
 
         public override int GetHashCode()

@@ -22,16 +22,27 @@ namespace UnitTest
 
         }
         [TestMethod]
-        public void CutTest()
+        [DataTestMethod]
+        [DataRow(14,58)]
+        [DataRow(-14, 58)]
+        public void CutTest(int num, int denom)
         {
-            var sf1 = new SimpleFraction(14,58);
+            var sf1 = new SimpleFraction(num,denom);
             sf1.Cut();
-            Assert.AreEqual(new SimpleFraction(7,29), sf1);
+            Assert.AreEqual(new SimpleFraction(num,denom), sf1);
 
-            var sf2 = new SimpleFraction(-14,58);
-         
-            sf2.Cut();
-            Assert.AreEqual(new SimpleFraction(-7, 29), sf2);
+        
+        }
+
+        [TestMethod]
+        [DataTestMethod]
+        [DataRow(14, 58)]
+        [DataRow(-14, 58)]
+        public void CutTest2(int num, int denom)
+        {
+            var sf1 = new SimpleFraction(num, denom);
+            sf1.Cut(2);
+            Assert.AreEqual(new SimpleFraction(num, denom), sf1);
 
 
         }
