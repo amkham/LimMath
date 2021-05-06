@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace LimMath
-{ 
-    public class Fraction<N, D>
+﻿namespace LimMath
+{
+    public abstract class Fraction<N, D>
     {
-        public Fraction(List<N> numerator, List<D> denominator)
+        public Fraction(N numerator, D denominator)
         {
             Numerator = numerator;
             Denominator = denominator;
         }
 
-        public List<N> Numerator { get; set; } = new List<N>();
-        public List<D> Denominator { get; set; } = new List<D>();
+        public N Numerator { get; set; }
+        public D Denominator { get; set; }
 
 
 
@@ -20,34 +17,27 @@ namespace LimMath
         ///////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////      АРИФМИТИЧЕСКИЕ И ЛОГИЧЕСКИЕ ДЕЙСТВИЯ     //////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////
-      
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////          ДЕЙСТВИЯ С ДРОБЬЮ         ///////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 
 
         public override string ToString()
         {
+            string result = "";
 
-            string s = "{";
-
-            foreach (var i in Numerator)
-            {
-                s = s + i.ToString() + " ";
-            }
-
-            s += " / ";
-            foreach (var i in Denominator)
-            {
-                s = s + i.ToString() + " ";
-            }
-
-            s += "}";
-            return s;
+            return result;
 
         }
 
 
 
-   
+
     }
 }

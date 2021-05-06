@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LimMath
+﻿namespace LimMath
 {
     public abstract class MathObj
     {
 
 
-        
-       
+
+
 
 
         ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,8 +13,8 @@ namespace LimMath
         ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    
-       
+
+
 
     }
 }

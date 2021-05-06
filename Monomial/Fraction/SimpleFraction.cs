@@ -75,7 +75,7 @@ namespace LimMath
         public static SimpleFraction operator -(SimpleFraction sf) => new SimpleFraction(-sf.Numer, sf.Denom);
         public static SimpleFraction operator -(SimpleFraction sf1, SimpleFraction sf2) => sf1 + (-sf2);
         public static SimpleFraction operator -(SimpleFraction sf1, int n) => sf1 + (-n);
-        public static SimpleFraction operator -(int n, SimpleFraction sf1) => (-sf1) + n;
+        public static SimpleFraction operator -(int n, SimpleFraction sf1) => n + (-sf1);
 
         /// <summary>
         /// Умножение
@@ -142,7 +142,7 @@ namespace LimMath
         }
         public void Cut(int n)
         {
-            if ((Numer%n==0)&&(Denom%n == 0))
+            if ((Numer % n == 0) && (Denom % n == 0))
             {
 
                 Numer /= n;
@@ -191,9 +191,9 @@ namespace LimMath
                 {
                     return "" + Numer;
                 }
-                else return  Numer + "/" + Denom;
+                else return Numer + "/" + Denom;
             }
-           
+
         }
 
         public override bool Equals(object obj)
@@ -202,7 +202,7 @@ namespace LimMath
             {
 
                 return Numer * fraction.Denom == Denom * fraction.Numer;
-                
+
             }
             else return false;
 

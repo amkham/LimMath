@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using LimMath;
+﻿using System.Collections.Generic;
 
 namespace LimMath
 {
     public class Polynomial
     {
-        public List<Monomial> Pol { get; set; }
+        public List<Monomial> Pol { get; set; } = new List<Monomial>();
 
         public Polynomial(List<Monomial> pol)
         {
@@ -15,16 +12,18 @@ namespace LimMath
         }
         public Polynomial()
         {
-            Pol = new List<Monomial>();
+
         }
 
-
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////      АРИФМИТИЧЕСКИЕ И ЛОГИЧЕСКИЕ ДЕЙСТВИЯ     //////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
         public static Polynomial operator +(Polynomial p) => p;
-        public static Polynomial operator +(Polynomial p1, Polynomial p2) => Sum(p1,p2);
-        public static Polynomial operator +(Polynomial p, int n) => Sum(p,n);
-        public static Polynomial operator +(int n, Polynomial p) => p+n;
+        public static Polynomial operator +(Polynomial p1, Polynomial p2) => Sum(p1, p2);
+        public static Polynomial operator +(Polynomial p, int n) => Sum(p, n);
+        public static Polynomial operator +(int n, Polynomial p) => p + n;
 
         public static Polynomial operator -(Polynomial p) => Opposite(p);
         public static Polynomial operator -(Polynomial p1, Polynomial p2) => p1 + (-p2);
@@ -36,11 +35,15 @@ namespace LimMath
         public static Polynomial operator *(int n, Polynomial p) => p * n;
 
 
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////          ДЕЙСТВИЯ PRIVATE   ////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////
         private static Polynomial Sum(Polynomial p1, Polynomial p2)
         {
             List<Monomial> result = new List<Monomial>();
 
-            foreach (var i in p1.Pol) 
+            foreach (var i in p1.Pol)
             {
                 foreach (var j in p2.Pol)
                 {
@@ -49,12 +52,12 @@ namespace LimMath
                         result.Add(i);
                         result.Add(j);
                     }
-                    else result.Add(i + j);
-                  
+                    else result.Add((Monomial)(i + j));
+
                 }
             }
             return new Polynomial(result);
-        
+
         }
         private static Polynomial Sum(Polynomial p1, int n)
         {
@@ -85,7 +88,7 @@ namespace LimMath
             foreach (var i in p.Pol)
             {
                 result.Pol.Add(i * n);
-                
+
             }
 
             return result;
@@ -103,6 +106,16 @@ namespace LimMath
             return result;
         }
 
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////          ДЕЙСТВИЯ PUBLIC  //////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////         ПЕРЕОПРЕДЕЛЕННЫЕ МЕТОДЫ              /////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////
 
     }
 }

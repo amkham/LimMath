@@ -1,4 +1,4 @@
-﻿using LimMath;
+﻿
 using System;
 using System.Collections.Generic;
 
@@ -7,35 +7,42 @@ namespace LimMath
     public class Monomial
     {
         public SimpleFraction Coef { get; set; }
-        public List<char> Variables { get; set; }
+        public List<char> Variables { get; set; } = new List<char>();
 
         public Monomial(SimpleFraction coef, List<char> variables)
         {
             Coef = coef;
             Variables = variables;
-           
+
         }
 
         public Monomial(SimpleFraction coef)
         {
             Coef = coef;
             Variables = new List<char>();
-            
+
         }
         public Monomial(int coef, List<char> variables)
         {
             Coef = new SimpleFraction(coef, 1);
             Variables = variables;
-           
+
         }
+        public Monomial(List<char> variables)
+        {
+            Coef = new SimpleFraction(1, 1);
+            Variables = variables;
+
+        }
+
         public Monomial(int coef)
         {
             Coef = new SimpleFraction(coef, 1);
             Variables = new List<char>();
-          
+
         }
         public Monomial()
-        { 
+        {
         }
 
 
@@ -51,9 +58,9 @@ namespace LimMath
         /// <returns></returns>
         /// 
         public static Monomial operator +(Monomial m) => m;
-        public static Monomial operator +(Monomial m1, Monomial m2) => Similar(m1, m2)
+        public static object operator +(Monomial m1, Monomial m2) => Similar(m1, m2)
             ? new Monomial(m1.Coef + m2.Coef, m1.Variables)
-            : throw new ArgumentException("Одночлены не подобны. Сложение не возможно");
+            : new Polynomial(new List<Monomial> { m1, m2 });
 
         /// <summary>
         /// Разность
@@ -62,16 +69,9 @@ namespace LimMath
         /// <param name="m2"></param>
         /// <returns></returns>
         /// 
-        public static Monomial operator -(Monomial m) => new Monomial (-m.Coef, m.Variables);
-        public static Monomial operator -(Monomial m1, Monomial m2)
-        {
-            if (m1 is null)
-            {
-                throw new ArgumentNullException(nameof(m1));
-            }
+        public static Monomial operator -(Monomial m) => new Monomial(-m.Coef, m.Variables);
+        public static object operator -(Monomial m1, Monomial m2) => m1 + (-m2);
 
-            return m1 + (-m2);
-        }
         /// <summary>
         /// Умножение
         /// </summary>
@@ -84,8 +84,27 @@ namespace LimMath
         public static Monomial operator *(Monomial m, int n) => m * new SimpleFraction(n);
         public static Monomial operator *(int n, Monomial m) => m * n;
 
-        //  public static Monomial operator /(Monomial m1, Monomial m2) => new Monomial(m1.Coef / m2.Coef, m1);
+        /// <summary>
+        /// Деление
+        /// </summary>
+        /// <param name="m1"></param>
+        /// <param name="m2"></param>
+        /// <returns></returns>
+        public static Monomial operator /(Monomial m1, Monomial m2)
+        {
+            return new Monomial(m1.Coef / m2.Coef, Div(m1.Variables, m2.Variables));
+        }
+        public static Monomial operator /(Monomial m, int n) => m / new Monomial(n);
+        public static Monomial operator /(int n, Monomial m) => new Monomial(n) / m;
+        public static Monomial operator /(Monomial m, SimpleFraction s) => m / new Monomial(s);
+        public static Monomial operator /(SimpleFraction s, Monomial m) => new Monomial(s) / m;
 
+        /// <summary>
+        /// Сравнение
+        /// </summary>
+        /// <param name="m1"></param>
+        /// <param name="m2"></param>
+        /// <returns></returns>
         public static bool operator ==(Monomial m1, Monomial m2)
         {
             if (m1 is null)
@@ -95,19 +114,71 @@ namespace LimMath
 
             return Similar(m1, m2) && m1.Coef == m2.Coef;
         }
-
         public static bool operator !=(Monomial m1, Monomial m2) => !Similar(m1, m2) || m1.Coef != m2.Coef;
-
         public static bool operator >(Monomial m1, Monomial m2) => Similar(m1, m2) ? m1.Coef > m2.Coef
             : throw new ArgumentException("Одночлены не подобны. Сравнение невозможно");
-        public static bool operator <(Monomial m1, Monomial m2) => Similar(m1, m2) ? m1.Coef < m2.Coef 
+        public static bool operator <(Monomial m1, Monomial m2) => Similar(m1, m2) ? m1.Coef < m2.Coef
             : throw new ArgumentException("Одночлены не подобны. Сравнение невозможно");
 
 
 
 
         ///////////////////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////          ДЕЙСТВИЯ С ОДНОЧЛЕНОМ       /////////////////////////////////
+        ///////////////////////////          ДЕЙСТВИЯ PRIVATE      ////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+
+        /// <summary>
+        /// Сложение переменных многочлена
+        /// </summary>
+        /// <param name="l1"></param>
+        /// <param name="l2"></param>
+        /// <returns></returns>
+        private static List<char> Add(in List<char> l1, in List<char> l2)
+        {
+
+            l1.AddRange(l2);
+            return l1;
+
+        }
+
+        private static List<char> Div(in List<char> l1, in List<char> l2)
+        {
+            if (l1 is null)
+            {
+                throw new ArgumentNullException(nameof(l1));
+            }
+
+            if (l2 is null)
+            {
+                throw new ArgumentNullException(nameof(l2));
+            }
+
+            List<char> result = new List<char>();
+            result.AddRange(l1);
+            result.AddRange(l2);
+
+            foreach (var i in l1)
+            {
+                foreach (var j in l2)
+                {
+
+                    if (i == j)
+                    {
+                        result.Remove(i);
+                        result.Remove(j);
+
+                    }
+                }
+            }
+
+
+            return result;
+
+        }
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////         ДЕЙСТВИЯ PUBLIC  ////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
@@ -118,9 +189,9 @@ namespace LimMath
         /// <returns></returns>
         public static bool Similar(in Monomial m1, in Monomial m2)
         {
-        
 
-                int result = 0;
+
+            int result = 0;
 
             if (m1.Variables.Count == m2.Variables.Count)
             {
@@ -143,36 +214,13 @@ namespace LimMath
             }
             else return false;
 
-                
-
-        
 
 
 
-        }
-        /// <summary>
-        /// Доп метод для умножения одночленов 
-        /// </summary>
-        /// <param name="l1"></param>
-        /// <param name="l2"></param>
-        /// <returns></returns>
-        private static List<char> Add(in List<char> l1, in List<char> l2)
-        {
-           
-            l1.AddRange(l2);
-            return l1;
+
+
 
         }
-
-
-        private static List<char> Div(List<char> l1, List<char> l2)
-        {
-            List<char> result = new List<char>();
-
-            return result;
-
-        }
-
 
         ///////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////         ПЕРЕОПРЕДЕЛЕННЫЕ МЕТОДЫ              /////////////////////////
@@ -191,8 +239,8 @@ namespace LimMath
         {
             return obj is Monomial monomial &&
                 Similar(this, monomial) &&
-                Coef == monomial.Coef; 
-                   
+                Coef == monomial.Coef;
+
         }
 
         public override int GetHashCode()
@@ -200,4 +248,4 @@ namespace LimMath
             return HashCode.Combine(Coef, Coef, Variables);
         }
     }
-    }
+}

@@ -1,8 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using LimMath;
+﻿using LimMath;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTest
 {
@@ -23,15 +20,15 @@ namespace UnitTest
         }
         [TestMethod]
         [DataTestMethod]
-        [DataRow(14,58)]
+        [DataRow(14, 58)]
         [DataRow(-14, 58)]
         public void CutTest(int num, int denom)
         {
-            var sf1 = new SimpleFraction(num,denom);
+            var sf1 = new SimpleFraction(num, denom);
             sf1.Cut();
-            Assert.AreEqual(new SimpleFraction(num,denom), sf1);
+            Assert.AreEqual(new SimpleFraction(num, denom), sf1);
 
-        
+
         }
 
         [TestMethod]

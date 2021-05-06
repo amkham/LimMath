@@ -6,9 +6,9 @@ namespace UnitTest
     [TestClass]
     public class FractionTest
     {
-        SimpleFraction sf = new SimpleFraction(2,3);
-        SimpleFraction sf2 = new SimpleFraction(7,4);
-        SimpleFraction sf3 = new SimpleFraction(6,4);
+        SimpleFraction sf = new SimpleFraction(2, 3);
+        SimpleFraction sf2 = new SimpleFraction(7, 4);
+        SimpleFraction sf3 = new SimpleFraction(6, 4);
 
 
         [TestMethod]

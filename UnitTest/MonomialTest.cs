@@ -9,6 +9,7 @@ namespace UnitTest
     [TestClass]
     public class MonomialTest
     {
+        
 
         List<char> variables1 = new List<char> { 'a', 'b', 'c', 'd' };
         List<char> variables2 = new List<char> { 'b', 'c', 'a', 'd' };
@@ -18,6 +19,7 @@ namespace UnitTest
         [TestMethod]
         public void EqualsTest()
         {
+
             LimMath.Monomial m1 = new LimMath.Monomial(2, new List<char> { 'z', 'x', 'y' });
             LimMath.Monomial m2 = new LimMath.Monomial(2, new List<char> { 'y', 'z', 'x' });
             Assert.AreEqual(true, m1.Equals(m2));
@@ -55,7 +57,7 @@ namespace UnitTest
             Assert.AreEqual(true, m4 > m1);
             Assert.AreEqual(true, m1 < m4);
 
-            
+
 
 
         }
@@ -66,7 +68,7 @@ namespace UnitTest
             Random random = new Random();
             char[] variables = { 'a', 'b', 'c', 'd' };
 
-           Console.WriteLine(random.Next(variables.Length));
+            Console.WriteLine(random.Next(variables.Length));
 
             LimMath.Monomial m1 = new LimMath.Monomial
             {
@@ -93,5 +95,7 @@ namespace UnitTest
 
             Console.WriteLine(monomial.ToString());
         }
+
+
     }
 }

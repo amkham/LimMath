@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace LimMath
+﻿namespace LimMath
 {
     static public class MathActions
     {
@@ -37,6 +35,6 @@ namespace LimMath
         }
 
 
-      
+
     }
 }
