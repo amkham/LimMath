@@ -10,18 +10,18 @@ namespace UnitTest
     public class MonomialTest
     {
         
-
+        
         List<char> variables1 = new List<char> { 'a', 'b', 'c', 'd' };
         List<char> variables2 = new List<char> { 'b', 'c', 'a', 'd' };
         List<char> variables3 = new List<char> { 'b', 'c', 'a', 'd' };
-
+        
 
         [TestMethod]
         public void EqualsTest()
         {
 
-            LimMath.Monomial m1 = new LimMath.Monomial(2, new List<char> { 'z', 'x', 'y' });
-            LimMath.Monomial m2 = new LimMath.Monomial(2, new List<char> { 'y', 'z', 'x' });
+            Monomial m1 = new Monomial(2, new List<char> { 'z', 'x', 'y' });
+            Monomial m2 = new Monomial(2, new List<char> { 'y', 'z', 'x' });
             Assert.AreEqual(true, m1.Equals(m2));
 
         }
@@ -30,14 +30,14 @@ namespace UnitTest
         [TestMethod]
         public void SimilarTest()
         {
-            LimMath.Monomial m1 = new LimMath.Monomial(2, new List<char> { 'z', 'x', 'y' });
-            LimMath.Monomial m2 = new LimMath.Monomial(2, new List<char> { 'y', 'z', 'x' });
-            LimMath.Monomial m3 = new LimMath.Monomial(2, new List<char> { 'y', 'a', 'z' });
-            LimMath.Monomial m4 = new LimMath.Monomial(4, new List<char> { 'z', 'x', 'y' });
-            LimMath.Monomial m5 = new LimMath.Monomial(4, new List<char> { 'x', 'x', 'y', 'y', 'z', 'z' });
+            Monomial m1 = new Monomial(2, new List<char> { 'z', 'x', 'y' });
+            Monomial m2 = new Monomial(2, new List<char> { 'y', 'z', 'x' });
+            Monomial m3 = new Monomial(2, new List<char> { 'y', 'a', 'z' });
+            Monomial m4 = new Monomial(4, new List<char> { 'z', 'x', 'y' });
+            Monomial m5 = new Monomial(4, new List<char> { 'x', 'x', 'y', 'y', 'z', 'z' });
 
-            Assert.AreEqual(true, LimMath.Monomial.Similar(m1, m2));
-            Assert.AreEqual(false, LimMath.Monomial.Similar(m1, m3));
+            Assert.AreEqual(true, Monomial.Similar(m1, m2));
+            Assert.AreEqual(false, Monomial.Similar(m1, m3));
 
             Assert.AreEqual(true, m1.Equals(m2));
 
