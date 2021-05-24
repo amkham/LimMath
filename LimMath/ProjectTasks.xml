@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<class name ="Monomial">
+  <task>Для операторов +,- дописать методы с действиями между Monomial и SimpleFraction возвращающий Polynomial</task>
+</class>
+

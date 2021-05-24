@@ -1,15 +1,15 @@
 ﻿namespace LimMath
 {
-    public abstract class Fraction<N, D>
+    public abstract class Fraction
     {
-        public Fraction(N numerator, D denominator)
+        public Fraction(Polynomial numerator, Polynomial denominator)
         {
             Numerator = numerator;
             Denominator = denominator;
         }
 
-        public N Numerator { get; set; }
-        public D Denominator { get; set; }
+        public Polynomial Numerator { get; set; }
+        public Polynomial Denominator { get; set; }
 
 
 
