@@ -6,7 +6,8 @@ namespace LimMath
 {
     public class Monomial
     {
-        public SimpleFraction Coef { get; set; }
+
+        public SimpleFraction Coef { get; set; } 
         public List<char> Variables { get; set; } = new List<char>();
 
         public Monomial(SimpleFraction coef, List<char> variables)

@@ -3,3 +3,7 @@
   <task>Для операторов +,- дописать методы с действиями между Monomial и SimpleFraction возвращающий Polynomial</task>
 </class>
 
+<class name ="Polynomial">
+    <task>Описать оператор /</task>
+</class>
+
